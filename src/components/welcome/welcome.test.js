@@ -8,6 +8,7 @@ it(`Render a greeting`, () => {
         <Welcome
           gameTime={0}
           amountMistakes={0}
+          onButtonClick={() => {}}
         />
     );
 
