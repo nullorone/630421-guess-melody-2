@@ -13,6 +13,7 @@ const App = () => {
     <Welcome
       gameTime={GAME_TIMES[randomGameTime]}
       amountMistakes={AMOUNT_MISTAKES[randomAmountMistakes]}
+      onButtonClick={() => {}}
     />);
 };
 
