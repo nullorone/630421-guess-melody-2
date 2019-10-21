@@ -10,7 +10,7 @@ it(`Render a greeting`, () => {
           amountMistakes={0}
           onButtonClick={() => {}}
         />
-    );
+    ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
