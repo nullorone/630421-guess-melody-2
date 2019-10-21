@@ -1,20 +1,23 @@
 import React from 'react';
 import {Welcome} from '../welcome/welcome';
-import {getRandomNumber} from "../../util";
+import PropTypes from 'prop-types';
 
-const GAME_TIMES = [5, 8, 10];
-const AMOUNT_MISTAKES = [0, 3, 5];
+const {number} = PropTypes;
 
-const randomGameTime = getRandomNumber(0, GAME_TIMES.length - 1);
-const randomAmountMistakes = getRandomNumber(0, AMOUNT_MISTAKES.length - 1);
+const App = (props) => {
+  const {time, mistakes} = props;
 
-const App = () => {
   return (
     <Welcome
-      gameTime={GAME_TIMES[randomGameTime]}
-      amountMistakes={AMOUNT_MISTAKES[randomAmountMistakes]}
+      gameTime={time}
+      amountMistakes={mistakes}
       onButtonClick={() => {}}
     />);
+};
+
+App.propTypes = {
+  time: number.isRequired,
+  mistakes: number.isRequired,
 };
 
 export {App};
