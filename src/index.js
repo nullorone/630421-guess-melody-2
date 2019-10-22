@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {App} from './components/app/app';
+import App from './components/app/app';
 import {GAME_TIMES, AMOUNT_MISTAKES} from './mocks/data';
 import {questions} from './mocks/questions';
 import {getRandomNumber} from "./util";
