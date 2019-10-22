@@ -23,22 +23,32 @@ export const questions = [
   },
   {
     type: `artist`,
+    question: `Кто исполняет эту песню?`,
     song: {
-      artist: `Jim Beam`,
+      artist: `Пелагея`,
       src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
     },
     answers: [
       {
-        picture: `http://placehold.it/134x134`,
-        artist: `John Snow`,
+        picture: {
+          src: `http://placehold.it/134x134`,
+          alt: `Пелагея`,
+        },
+        artist: `Пелагея`,
       },
       {
-        picture: `http://placehold.it/134x134`,
-        artist: `Jack Daniels`,
+        picture: {
+          src: `http://placehold.it/134x134`,
+          alt: `Краснознаменная дивизия имени моей бабушки`,
+        },
+        artist: `Краснознаменная дивизия имени моей бабушки`,
       },
       {
-        picture: `http://placehold.it/134x134`,
-        artist: `Jim Beam`,
+        picture: {
+          src: `http://placehold.it/134x134`,
+          alt: `Lorde`,
+        },
+        artist: `Lorde`,
       },
     ],
   },

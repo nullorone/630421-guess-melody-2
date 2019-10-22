@@ -1,18 +1,50 @@
 import React from 'react';
 import {Welcome} from '../welcome/welcome';
 import PropTypes from 'prop-types';
+import GameArtist from "../game-artist/game-artist";
 
 const {string, number, arrayOf, shape, oneOf} = PropTypes;
 
 const App = (props) => {
-  const {time, mistakes} = props;
+  const {questions, time, mistakes} = props;
 
-  return (
-    <Welcome
-      gameTime={time}
-      amountMistakes={mistakes}
-      onButtonClick={() => {}}
-    />);
+  const getScreen = (GameQuestion) => {
+    const {
+      question,
+      type,
+      answers
+    } = GameQuestion;
+
+    switch (true) {
+      case (type === `artist`):
+        return (
+          <GameArtist
+            question={question}
+            answers={answers}
+            onPlayButtonClick={() => {}}
+            time={time}
+            mistakes={mistakes}
+          />
+        );
+      case (type === `genre`):
+        return (
+          <Welcome
+            gameTime={time}
+            amountMistakes={mistakes}
+            onButtonClick={() => {}}
+          />);
+      default:
+        return null;
+    }
+  };
+
+  return questions.map((question, index) => {
+    return (
+      <React.Fragment key={`question-component-${index + 1}`}>
+        {getScreen(question)}
+      </React.Fragment>
+    );
+  });
 };
 
 App.propTypes = {
