@@ -1,51 +1,98 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import {Welcome} from '../welcome/welcome';
 import PropTypes from 'prop-types';
-import GameArtist from "../game-artist/game-artist";
+import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen";
+import GenreQuestionScreen from "../genre-question-screen/genre-question-screen";
 
 const {string, number, arrayOf, shape, oneOf} = PropTypes;
 
-const App = (props) => {
-  const {questions, time, mistakes} = props;
-
-  const getScreen = (GameQuestion) => {
+export default class App extends PureComponent {
+  static getScreen(gameQuestion, props, ...handler) {
     const {
-      question,
-      type,
-      answers
-    } = GameQuestion;
+      time,
+      mistakes,
+      questions,
+    } = props;
 
-    switch (true) {
-      case (type === `artist`):
+    const {onButtonClick} = handler[0];
+
+    if (gameQuestion === -1) {
+      return (
+        <Welcome
+          gameTime={time}
+          amountMistakes={mistakes}
+          onButtonClick={onButtonClick}
+        />);
+    }
+
+    const {question, type, answers} = questions[gameQuestion];
+
+    switch (type) {
+      case (`artist`):
         return (
-          <GameArtist
+          <ArtistQuestionScreen
             question={question}
             answers={answers}
             onPlayButtonClick={() => {}}
+            onArtistAnswerClick={onButtonClick}
             time={time}
             mistakes={mistakes}
           />
         );
-      case (type === `genre`):
+      case (`genre`):
         return (
-          <Welcome
-            gameTime={time}
-            amountMistakes={mistakes}
-            onButtonClick={() => {}}
-          />);
-      default:
-        return null;
+          <GenreQuestionScreen
+            time={time}
+            mistakes={mistakes}
+            question={question}
+            answers={answers}
+            onTrackButtonClick={() => {}}
+            onSubmitClick={onButtonClick}
+          />
+        );
     }
-  };
 
-  return questions.map((question, index) => {
-    return (
-      <React.Fragment key={`question-component-${index + 1}`}>
-        {getScreen(question)}
-      </React.Fragment>
-    );
-  });
-};
+    return null;
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      question: -1,
+    };
+  }
+
+  render() {
+    const {question} = this.state;
+
+    return App
+      .getScreen(
+          question,
+          this.props,
+          {
+            onButtonClick: this._onButtonClickHandler.bind(this),
+          });
+  }
+
+  _onButtonClickHandler(answers) {
+    this.setState((prevState) => {
+      const {questions} = this.props;
+      const nextQuestion = prevState.question + 1;
+      const endQuestion = nextQuestion >= questions.length;
+
+      if (this.state.question !== -1) {
+        // eslint-disable-next-line no-console
+        console.log(`Ответ пользователя: ${answers}`);
+      }
+
+      return {
+        question: endQuestion ? -1 : nextQuestion,
+      };
+    });
+  }
+
+}
 
 App.propTypes = {
   time: number.isRequired,
@@ -84,5 +131,3 @@ App.propTypes = {
       )
   ),
 };
-
-export default App;

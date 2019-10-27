@@ -1,36 +1,46 @@
 import React from 'react';
 import {shallow} from "enzyme";
-import {App} from "./app";
+import App from "./app";
 
-it(`Has property time`, () => {
-  const wrapper = shallow(
-      <App
-        time={0}
-        mistakes={0}
-      />
-  );
+const Value = {
+  EMPTY: 0,
+  FULL: 1
+};
 
-  expect(Boolean(wrapper.props(`time`))).toBeTruthy();
-});
+describe(`Test cases component App`, () => {
+  const initialProps = {
+    time: Value.EMPTY,
+    mistakes: Value.EMPTY,
+    questions: [{}],
+  };
+  it(`Has property time`, () => {
+    const wrapper = shallow(
+        <App
+          {...initialProps}
+        />
+    );
 
-it(`Has property mistakes`, () => {
-  const wrapper = shallow(
-      <App
-        time={0}
-        mistakes={0}
-      />
-  );
+    expect(Boolean(wrapper.props(`time`))).toBeTruthy();
+  });
 
-  expect(Boolean(wrapper.props(`mistakes`))).toBeTruthy();
-});
+  it(`Has property mistakes`, () => {
+    const wrapper = shallow(
+        <App
+          {...initialProps}
+        />
+    );
 
-it(`Return Welcome component`, () => {
-  const wrapper = shallow(
-      <App
-        time={0}
-        mistakes={0}
-      />
-  );
+    expect(Boolean(wrapper.props(`mistakes`))).toBeTruthy();
+  });
 
-  expect(wrapper.find(`Welcome`)).toBeTruthy();
+  it(`Return Welcome component`, () => {
+    const wrapper = shallow(
+        <App
+          {...initialProps}
+        />
+    );
+
+    expect(wrapper.find(`Welcome`)).toBeTruthy();
+  });
+
 });
