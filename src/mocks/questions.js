@@ -1,22 +1,23 @@
 export const questions = [
   {
     type: `genre`,
+    question: `Выберите инди-рок треки`,
     genre: `rock`,
     answers: [
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://commons.wikimedia.org/wiki/File:Uganda_national_anthem.ogg`,
         genre: `rock`,
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://commons.wikimedia.org/wiki/File:Uganda_national_anthem.ogg`,
         genre: `pop`,
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://commons.wikimedia.org/wiki/File:Uganda_national_anthem.ogg`,
         genre: `jazz`,
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://commons.wikimedia.org/wiki/File:Uganda_national_anthem.ogg`,
         genre: `rock`,
       },
     ],
@@ -26,7 +27,7 @@ export const questions = [
     question: `Кто исполняет эту песню?`,
     song: {
       artist: `Пелагея`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+      src: `https://commons.wikimedia.org/wiki/File:Uganda_national_anthem.ogg`,
     },
     answers: [
       {
