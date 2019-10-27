@@ -1,9 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {checkTimeFormat} from "../../util";
 
 const {shape, string, number, arrayOf, func} = PropTypes;
 
-const generateArtistMarkup = (answers) => {
+
+const generateArtistMarkup = (answers, onInputClick) => {
+  const artistInputClickHandler = (evt) => {
+    evt.preventDefault();
+    const userAnswer = evt.target.labels[0].textContent;
+    onInputClick(userAnswer);
+  };
+
   return answers.map((answer, index) => {
     const {
       artist,
@@ -13,9 +21,17 @@ const generateArtistMarkup = (answers) => {
       }
     } = answer;
     const answerIndex = index + 1;
+
     return (
       <div className="artist" key={`answer-artist-${answerIndex}`}>
-        <input className="artist__input visually-hidden" type="radio" name="answer" value={`artist-${answerIndex}`} id={`answer-${answerIndex}`}/>
+        <input
+          className="artist__input visually-hidden"
+          type="radio"
+          name="answer"
+          value={`artist-${answerIndex}`}
+          id={`answer-${answerIndex}`}
+          onClick={artistInputClickHandler}
+        />
         <label className="artist__name" htmlFor={`answer-${answerIndex}`}>
           <img className="artist__picture" src={src} alt={alt}/>
           {artist}
@@ -25,18 +41,15 @@ const generateArtistMarkup = (answers) => {
   });
 };
 
-const GameArtist = (props) => {
+const ArtistQuestionScreen = (props) => {
   const {
     question,
     answers,
     onPlayButtonClick,
+    onArtistAnswerClick,
     time,
     mistakes,
   } = props;
-
-  const checkTimeFormat = (questionTime) => {
-    return questionTime < 10 ? `0${questionTime}` : questionTime;
-  };
 
   const generateMistakesMarkup = (amountMistakes) => {
     return new Array(amountMistakes).fill(` `).map((emptyValue, index) => <div className="wrong" key={`artist-mistake-${index + 1}`}/>);
@@ -77,14 +90,14 @@ const GameArtist = (props) => {
         </div>
 
         <form className="game__artist">
-          {generateArtistMarkup(answers)}
+          {generateArtistMarkup(answers, onArtistAnswerClick)}
         </form>
       </section>
     </section>
   );
 };
 
-GameArtist.propTypes = {
+ArtistQuestionScreen.propTypes = {
   question: string.isRequired,
   answers: arrayOf(
       shape({
@@ -95,8 +108,9 @@ GameArtist.propTypes = {
         }),
       })),
   onPlayButtonClick: func.isRequired,
+  onArtistAnswerClick: func.isRequired,
   time: number.isRequired,
   mistakes: number.isRequired,
 };
 
-export default GameArtist;
+export default ArtistQuestionScreen;

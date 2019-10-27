@@ -1,33 +1,37 @@
 import React from 'react';
-import {shallow} from "enzyme";
-import GameArtist from "./game-artist";
+import {shallow, mount} from "enzyme";
+import ArtistQuestionScreen from "./artist-question-screen";
 
 const Value = {
   EMPTY: 0,
   FULL: 1,
 };
 
+const EMPTY_STRING = ``;
+
 const EMPTY_ANSWER = {
-  artist: ``,
+  artist: EMPTY_STRING,
   picture: {
-    src: ``,
-    alt: ``,
+    src: EMPTY_STRING,
+    alt: EMPTY_STRING,
   },
 };
 
 describe(`Return values component`, () => {
   const playButtonHandler = jest.fn();
+  const answerClickHandler = jest.fn();
   const initialProps = {
-    question: ``,
+    question: EMPTY_STRING,
     answers: [EMPTY_ANSWER],
     onPlayButtonClick: playButtonHandler,
+    onArtistAnswerClick: answerClickHandler,
     time: Value.EMPTY,
     mistakes: Value.EMPTY,
   };
 
   it(`Return section with className game--artist`, () => {
     const wrapper = shallow(
-        <GameArtist
+        <ArtistQuestionScreen
           {...initialProps}
         />
     );
@@ -37,7 +41,7 @@ describe(`Return values component`, () => {
 
   it(`Return question title`, () => {
     const wrapper = shallow(
-        <GameArtist
+        <ArtistQuestionScreen
           {...initialProps}
         />
     );
@@ -47,7 +51,7 @@ describe(`Return values component`, () => {
 
   it(`Return button play track`, () => {
     const wrapper = shallow(
-        <GameArtist
+        <ArtistQuestionScreen
           {...initialProps}
         />
     );
@@ -57,7 +61,7 @@ describe(`Return values component`, () => {
 
   it(`Click on button play track`, () => {
     const wrapper = shallow(
-        <GameArtist
+        <ArtistQuestionScreen
           {...initialProps}
         />
     );
@@ -67,14 +71,38 @@ describe(`Return values component`, () => {
     expect(playButtonHandler).toBeCalledTimes(Value.FULL);
   });
 
+  it(`Click on answer`, () => {
+    const wrapper = mount(
+        <ArtistQuestionScreen
+          {...initialProps}
+        />
+    );
+
+    wrapper.find(`.artist__input`).simulate(`click`, {preventDefault() {}});
+
+    expect(answerClickHandler).toBeCalledTimes(Value.FULL);
+  });
+
   it(`Return answers`, () => {
     const wrapper = shallow(
-        <GameArtist
+        <ArtistQuestionScreen
           {...initialProps}
         />
     );
 
     expect(wrapper.find(`.game__artist`).children().length).not.toBe(Value.EMPTY);
+  });
+
+  it(`Call answer handler with correct type`, () => {
+    const wrapper = mount(
+        <ArtistQuestionScreen
+          {...initialProps}
+        />
+    );
+
+    wrapper.find(`.artist__input`).simulate(`click`, {preventDefault() {}});
+
+    expect(answerClickHandler).toBeCalledWith(expect.any(String));
   });
 });
 
