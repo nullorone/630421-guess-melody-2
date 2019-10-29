@@ -55,7 +55,13 @@ const ArtistQuestionScreen = (props) => {
   } = props;
 
   const generateMistakesMarkup = (amountMistakes) => {
-    return new Array(amountMistakes).fill(` `).map((emptyValue, index) => <div className="wrong" key={`artist-mistake-${index + 1}`}/>);
+    let mistakesMarkup = [];
+    for (let i = 0; i < amountMistakes; i++) {
+      const currentKey = `artist-mistake-${i + 1}`;
+
+      mistakesMarkup.push(<div className="wrong" key={currentKey}/>).join(`/n`);
+    }
+    return mistakesMarkup;
   };
 
   return (
