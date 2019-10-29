@@ -21,18 +21,21 @@ const generateArtistMarkup = (answers, onInputClick) => {
       }
     } = answer;
     const answerIndex = index + 1;
+    const answerId = `answer-${answerIndex}`;
+    const artistId = `artist-${answerIndex}`;
+    const markupId = `answer-artist-${answerIndex}`;
 
     return (
-      <div className="artist" key={`answer-artist-${answerIndex}`}>
+      <div className="artist" key={markupId}>
         <input
           className="artist__input visually-hidden"
           type="radio"
           name="answer"
-          value={`artist-${answerIndex}`}
-          id={`answer-${answerIndex}`}
+          value={artistId}
+          id={answerId}
           onClick={artistInputClickHandler}
         />
-        <label className="artist__name" htmlFor={`answer-${answerIndex}`}>
+        <label className="artist__name" htmlFor={answerId}>
           <img className="artist__picture" src={src} alt={alt}/>
           {artist}
         </label>
