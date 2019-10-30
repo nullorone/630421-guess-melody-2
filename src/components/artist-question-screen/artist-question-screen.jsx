@@ -2,48 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MistakeList from "../mistake-list/mistake-list";
 import Timer from "../timer/timer";
+import ArtistList from "../artist-list/artist-list";
 
 const {shape, string, number, arrayOf, func} = PropTypes;
-
-
-const generateArtistMarkup = (answers, onInputClick) => {
-  const artistInputClickHandler = (evt) => {
-    evt.preventDefault();
-    const userAnswer = evt.target.labels[0].textContent;
-    onInputClick(userAnswer);
-  };
-
-  return answers.map((answer, index) => {
-    const {
-      artist,
-      picture: {
-        src,
-        alt,
-      }
-    } = answer;
-    const answerIndex = index + 1;
-    const answerId = `answer-${answerIndex}`;
-    const artistId = `artist-${answerIndex}`;
-    const markupId = `answer-artist-${answerIndex}`;
-
-    return (
-      <div className="artist" key={markupId}>
-        <input
-          className="artist__input visually-hidden"
-          type="radio"
-          name="answer"
-          value={artistId}
-          id={answerId}
-          onClick={artistInputClickHandler}
-        />
-        <label className="artist__name" htmlFor={answerId}>
-          <img className="artist__picture" src={src} alt={alt}/>
-          {artist}
-        </label>
-      </div>
-    );
-  });
-};
 
 const ArtistQuestionScreen = (props) => {
   const {
@@ -82,9 +43,10 @@ const ArtistQuestionScreen = (props) => {
           </div>
         </div>
 
-        <form className="game__artist">
-          {generateArtistMarkup(answers, onArtistAnswerClick)}
-        </form>
+        <ArtistList
+          answers={answers}
+          onArtistAnswerClick={onArtistAnswerClick}
+        />
       </section>
     </section>
   );

@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {checkTimeFormat} from "../../util";
+import Timer from "../timer/timer";
+import MistakeList from "../mistake-list/mistake-list";
 
 const {string, number, func, shape, arrayOf} = PropTypes;
-
-const generateMistakesMarkup = (amountMistakes) => {
-  return new Array(amountMistakes).fill(` `).map((emptyValue, index) => <div className="wrong" key={`artist-mistake-${index + 1}`}/>);
-};
 
 const generateAnswersMarkup = (gameAnswers, trackButtonClickHandler) => {
   return gameAnswers.map((answer, index) => {
@@ -67,15 +64,8 @@ const GenreQuestionScreen = (props) => {
           <circle className="timer__line" cx="390" cy="390" r="370"/>
         </svg>
 
-        <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-          <span className="timer__mins">{checkTimeFormat(time)}</span>
-          <span className="timer__dots">:</span>
-          <span className="timer__secs">00</span>
-        </div>
-
-        <div className="game__mistakes">
-          {generateMistakesMarkup(mistakes)}
-        </div>
+        <Timer time={time}/>
+        <MistakeList mistakes={mistakes}/>
       </header>
 
       <section className="game__screen">
