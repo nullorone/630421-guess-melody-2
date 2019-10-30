@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen";
 
-const {string, number, arrayOf, shape} = PropTypes;
+const {string, number, arrayOf, shape, oneOf} = PropTypes;
 
 export default class App extends PureComponent {
   static getScreen(gameQuestion, props, ...handler) {
@@ -100,14 +100,14 @@ App.propTypes = {
   questions: arrayOf(
       shape(
           {
-            type: string.isRequired,
+            type: oneOf([`genre`, `artist`]),
+            genre: oneOf([`rock`, `jazz`, `pop`]),
             question: string.isRequired,
-            genre: string,
             answers: arrayOf(
                 shape(
                     {
                       src: string,
-                      genre: string,
+                      genre: oneOf([`rock`, `jazz`, `pop`])
                     }
                 )
             ),
@@ -115,17 +115,17 @@ App.propTypes = {
       ),
       shape(
           {
-            type: string.isRequired,
+            type: oneOf([`genre`, `artist`]),
             question: string.isRequired,
             song: shape({
-              artist: string.isRequired,
+              artist: oneOf([`Jim Beam`, `John Snow`, `Jack Daniels`]),
               src: string,
             }),
             answers: arrayOf(
                 shape(
                     {
                       picture: string,
-                      artist: string.isRequired,
+                      artist: oneOf([`Jim Beam`, `John Snow`, `Jack Daniels`])
                     }
                 )
             ),
