@@ -1,8 +1,12 @@
 // Утилитарные функции
 
 // Получаем рандомное число из диапазона
-const getRandomNumber = (beginNumber = 0, endNumber) => {
+const getRandomNumber = (endNumber, beginNumber = 0) => {
   return Math.floor(Math.random() * (endNumber - beginNumber + 1)) + beginNumber;
+};
+
+const getRandomValueOfArray = (array) => {
+  return array[array.length - 1];
 };
 
 // Получаем формат числа 0n
@@ -12,5 +16,6 @@ const checkTimeFormat = (questionTime) => {
 
 export {
   getRandomNumber,
+  getRandomValueOfArray,
   checkTimeFormat,
 };

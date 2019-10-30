@@ -3,16 +3,13 @@ import ReactDOM from 'react-dom';
 import App from './components/app/app';
 import {GAME_TIMES, AMOUNT_MISTAKES} from './mocks/data';
 import {questions} from './mocks/questions';
-import {getRandomNumber} from "./util";
-
-const randomGameTime = getRandomNumber(0, GAME_TIMES.length - 1);
-const randomAmountMistakes = getRandomNumber(0, AMOUNT_MISTAKES.length - 1);
+import {getRandomValueOfArray} from "./util";
 
 const init = (gameQuestions) => {
   ReactDOM.render(
       <App
-        time={GAME_TIMES[randomGameTime]}
-        mistakes={AMOUNT_MISTAKES[randomAmountMistakes]}
+        time={getRandomValueOfArray(GAME_TIMES)}
+        mistakes={getRandomValueOfArray(AMOUNT_MISTAKES)}
         questions={gameQuestions}
       />,
       document.querySelector(`#root`)
