@@ -1,11 +1,7 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 import MistakeList from "../mistake-list/mistake-list";
-
-const Value = {
-  EMPTY: 0,
-  FULL: 1,
-};
+import {Value} from "../../constants";
 
 const initProps = {
   mistakes: Value.EMPTY,

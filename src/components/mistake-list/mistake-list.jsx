@@ -11,7 +11,7 @@ const MistakeList = (props) => {
   for (let i = 0; i < mistakes; i++) {
     const currentKey = `artist-mistake-${i + 1}`;
 
-    mistakesMarkup.push(<Mistake key={currentKey}/>).join(`/n`);
+    mistakesMarkup.push(<Mistake key={currentKey}/>);
   }
 
   return (
