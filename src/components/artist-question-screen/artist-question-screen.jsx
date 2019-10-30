@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {checkTimeFormat} from "../../util";
 import MistakeList from "../mistake-list/mistake-list";
+import Timer from "../timer/timer";
 
 const {shape, string, number, arrayOf, func} = PropTypes;
 
@@ -67,12 +67,7 @@ const ArtistQuestionScreen = (props) => {
           <circle className="timer__line" cx="390" cy="390" r="370"/>
         </svg>
 
-        <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-          <span className="timer__mins">{checkTimeFormat(time)}</span>
-          <span className="timer__dots">:</span>
-          <span className="timer__secs">00</span>
-        </div>
-
+        <Timer time={time}/>
         <MistakeList mistakes={mistakes}/>
       </header>
 
