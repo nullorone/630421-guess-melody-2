@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {checkTimeFormat} from "../../util";
+import MistakeList from "../mistake-list/mistake-list";
 
 const {shape, string, number, arrayOf, func} = PropTypes;
 
@@ -54,16 +55,6 @@ const ArtistQuestionScreen = (props) => {
     mistakes,
   } = props;
 
-  const generateMistakesMarkup = (amountMistakes) => {
-    let mistakesMarkup = [];
-    for (let i = 0; i < amountMistakes; i++) {
-      const currentKey = `artist-mistake-${i + 1}`;
-
-      mistakesMarkup.push(<div className="wrong" key={currentKey}/>).join(`/n`);
-    }
-    return mistakesMarkup;
-  };
-
   return (
     <section className="game game--artist">
       <header className="game__header">
@@ -82,9 +73,7 @@ const ArtistQuestionScreen = (props) => {
           <span className="timer__secs">00</span>
         </div>
 
-        <div className="game__mistakes">
-          {generateMistakesMarkup(mistakes)}
-        </div>
+        <MistakeList mistakes={mistakes}/>
       </header>
 
       <section className="game__screen">
