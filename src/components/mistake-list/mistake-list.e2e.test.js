@@ -19,8 +19,6 @@ describe(`Test cases component`, () => {
         />
     );
 
-    console.log(wrapper.find(`.wrong`).debug())
-
     expect(wrapper.find(`.wrong`)).toBeTruthy();
   });
 
@@ -31,9 +29,7 @@ describe(`Test cases component`, () => {
         />
     );
 
-    console.log(wrapper.debug())
-
-    expect(wrapper.props(`mistakes`)).toBe(initProps.mistakes);
+    expect(wrapper.children().length).toBe(initProps.mistakes);
   });
 });
 
