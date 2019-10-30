@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-import {GAME_TIMES, AMOUNT_MISTAKES} from './mocks/data';
+import {GAME_TIMES, AMOUNT_MISTAKES} from './constants';
 import {questions} from './mocks/questions';
 import {getRandomValueOfArray} from "./util";
 
