@@ -1,11 +1,7 @@
 import React from 'react';
 import {shallow} from "enzyme";
 import App from "./app";
-
-const Value = {
-  EMPTY: 0,
-  FULL: 1
-};
+import {Value} from "../../constants";
 
 describe(`Test cases component App`, () => {
   const initialProps = {

@@ -2,13 +2,7 @@ import React from 'react';
 import {shallow, mount} from "enzyme";
 import GenreQuestionScreen from "./genre-question-screen";
 global.FormData = jest.fn();
-
-const Value = {
-  EMPTY: 0,
-  FULL: 1
-};
-
-const EMPTY_STRING = ``;
+import {Value, EMPTY_STRING} from "../../constants";
 
 const EMPTY_ANSWER = {
   src: EMPTY_STRING,

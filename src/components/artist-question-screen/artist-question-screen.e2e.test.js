@@ -1,13 +1,8 @@
 import React from 'react';
 import {shallow, mount} from "enzyme";
 import ArtistQuestionScreen from "./artist-question-screen";
+import {Value, EMPTY_STRING} from "../../constants";
 
-const Value = {
-  EMPTY: 0,
-  FULL: 1,
-};
-
-const EMPTY_STRING = ``;
 
 const EMPTY_ANSWER = {
   artist: EMPTY_STRING,
